@@ -1,0 +1,12 @@
+---
+- name: check gs_dl_remote_bucket variable
+  fail: msg="Variable '{{ gs_dl_remote_bucket }}' is not defined" 
+  when: gs_dl_remote_bucket is not defined
+  tags: check
+
+
+- name: check gs_dl_remote_filename variable
+  fail: msg="Variable '{{ gs_dl_remote_filename }}' is not defined" 
+  when: gs_dl_remote_filename is not defined
+  tags: check
+

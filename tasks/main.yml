@@ -1,0 +1,4 @@
+---
+# tasks file for gs_downloader
+- include: check_vars.yml
+- include: download_file.yml

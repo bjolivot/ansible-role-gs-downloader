@@ -1,0 +1,9 @@
+---
+# defaults file for gs_downloader
+
+
+gs_dl_dest_filename: "{{ gs_dl_remote_filename }}"
+gs_dl_tmp_dir: "/tmp"
+gs_dl_dest_dir: "/tmp"
+gs_dl_override: false
+

@@ -1,0 +1,30 @@
+---
+- name: create necessary directories
+  file: dest={{ item }} state=directory mode=0775
+  with_items:
+    - "{{ gs_dl_tmp_dir }}"
+    - "{{ gs_dl_dest_dir }}"
+
+
+
+- name: delete files if needed
+  file: dest="{{item}}" state=absent
+  with_items:
+    - "{{ gs_dl_tmp_dir }}/{{ gs_dl_remote_filename }}"
+    - "{{ gs_dl_dest_dir }}/{{ gs_dl_dest_filename }}"
+  when: gs_dl_override == true
+
+
+
+- name: download {{ gs_dl_remote_bucket }}/{{gs_dl_remote_filename}} and send it to {{ gs_dl_tmp_dir }}
+  shell: gsutil -m cp  "{{ gs_dl_remote_bucket }}/{{gs_dl_remote_filename}}" "{{gs_dl_tmp_dir}}"
+  args:
+    creates: "{{ gs_dl_remote_filename }}"
+    chdir: "{{ gs_dl_tmp_dir }}"
+
+
+
+- name: copy file to destination
+  shell: cp "{{ gs_dl_tmp_dir }}/{{ gs_dl_remote_filename }}" "{{ gs_dl_dest_dir }}/{{ gs_dl_dest_filename }}"
+  args:
+    creates: "{{ gs_dl_dest_dir }}/{{ gs_dl_dest_filename }}"
