@@ -1,6 +1,6 @@
 ---
 - name: create necessary directories
-  file: dest={{ item }} state=directory mode=0775
+  file: dest={{ item }} state=directory
   with_items:
     - "{{ gs_dl_tmp_dir }}"
     - "{{ gs_dl_dest_dir }}"
