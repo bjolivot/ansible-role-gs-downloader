@@ -21,10 +21,9 @@
   args:
     creates: "{{ gs_dl_remote_filename }}"
     chdir: "{{ gs_dl_tmp_dir }}"
-
+  register: download_file
 
 
 - name: copy file to destination
   shell: cp "{{ gs_dl_tmp_dir }}/{{ gs_dl_remote_filename }}" "{{ gs_dl_dest_dir }}/{{ gs_dl_dest_filename }}"
-  args:
-    creates: "{{ gs_dl_dest_dir }}/{{ gs_dl_dest_filename }}"
+  when: download_file.changed
