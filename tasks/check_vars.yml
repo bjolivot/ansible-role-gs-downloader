@@ -1,9 +1,7 @@
 ---
 
-
-- name: Check vars
-  debug: msg="Cheking {{ item | mandatory  }} "
-  tags: check
-  with_items:
-    - "{{gs_dl_remote_bucket}}"
-    - "{{gs_dl_remote_filename}}"
+- fail: msg="Variable '{{ item }}' is not defined"
+  when: item not in hostvars[inventory_hostname]
+  with_items: 
+    - gs_dl_remote_bucket
+    - gs_dl_remote_filename
