@@ -1,7 +1,7 @@
 ---
 
 - fail: msg="Variable '{{ item }}' is not defined"
-  when: item not in hostvars[inventory_hostname]
+  when: item not in vars
   with_items: 
     - gs_dl_remote_bucket
     - gs_dl_remote_filename
