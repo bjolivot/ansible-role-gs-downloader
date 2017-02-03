@@ -10,13 +10,13 @@ Requirements
 
 Role Variables
 --------------
-
+```
 gs_dl_remote_bucket   : bucket where to download the file       : required
 gs_dl_remote_filename : remote filename                         : required
 gs_dl_dest_filename   : destination filename                    : optional, default value = gs_dl_remote_filename
 gs_dl_tmp_dir         : directory where to download the file    : optional, default value = /tmp
 gs_dl_dest_dir        : the downloaded file will be moved here  : optional, default value = /tmp
-
+```
 
 
 Example
